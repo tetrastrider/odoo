@@ -1,1 +1,3 @@
-
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_modelo_clientes,modelo.clientes,model_modelo_clientes,,1,1,1,1
+access_modelo_categorias,modelo.categorias,model_modelo_categorias,,1,1,1,1
