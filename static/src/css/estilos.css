@@ -1,0 +1,10 @@
+@charset "utf-8";
+.openerp .oe_margin_top_8 {
+    margin-top: 8px;
+    color:red;
+    border-color:blue;
+}
+
+.breadcrumb-item.active{
+	color:red!important;
+}
