@@ -1,1 +1,132 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+  <data>
+    <!-- vista simple cuando le das click a mas detalles -->
+    
+    <record model="ir.ui.view" id="clientes_list">
+      <field name="name">Descripcion</field>
+      <field name="model">modelo.clientes</field>
+      <field name="arch" type="xml">
+          <tree>
+                      <field name="foto" widget="image" class="oe_left oe_avatar" />
+                      <field name="nombre" required="1" placeholder="nombre" />
+                      <field name="primer_apellido" required="1" placeholder="primer apellido" />
+                      <field name="segundo_apellido" required="1" placeholder="segundo apellido" />
+                      <field name="edad" placeholder="edad" />
+                      <field name="fecha_nacimiento" placeholder="fecha de nacimiento" />
+                      <field name="genero" placeholder="genero"/>
+                      <field name="nacionalidad" placeholder="nacionalidad"/>
+                      <field name="description" placeholder="Datos Generales"/>
+                      <field name="area" placeholder="Categoria"/>
+          </tree>
+      </field>
+    </record>
 
+
+    <record model="ir.ui.view" id="clientes_form">
+      <field name="name">Descripcion</field>
+      <field name="model">modelo.clientes</field>
+      <field name="arch" type="xml">
+        <form>
+          <sheet>
+            <field name="foto" widget="image" class="oe_left oe_avatar" options='{"size": [180, 102]}'/>
+
+              <group>
+                      <field name="nombre" required="1" placeholder="nombre" />
+                      <field name="primer_apellido" required="1" placeholder="primer apellido" />
+                      <field name="segundo_apellido" required="1" placeholder="segundo apellido" />
+                      <field name="edad" placeholder="edad" />
+                      <field name="fecha_nacimiento" placeholder="fecha de nacimiento" />
+                      <field name="genero" placeholder="genero"/>
+                      <field name="nacionalidad" placeholder="nacionalidad"/>
+                      <field name="description" placeholder="Datos Generales"/>
+                      <field name="area" placeholder="Categoria"/>
+              </group>
+          </sheet>
+        </form>
+      </field>
+    </record> -->
+
+<!--BUSQUEDA-->
+
+    <record model="ir.ui.view" id="clientes_busqueda">
+      <field name="name">busqueda_clientes</field>
+      <field name="model">modelo.clientes</field>
+      <field name = "arch" type = "xml">
+        <search string ="buscar_nacionalidad">
+          <field name="nombre" string="nombre"/>
+          <field name="nacionalidad" string="nacionalidad"/>
+          <field name="genero" string="genero"/>
+        </search>
+      </field>
+    </record>
+
+    <!-- actions opening views on models Donde se insertan los datos-->
+    
+    <!--VISTA LISTA-->
+    <record model="ir.actions.act_window" id="clientes_action">
+      <field name="name">Lista de Clientes</field>
+      <field name="res_model">modelo.clientes</field>
+      <field name = "view_type">tree</field>
+      <field name="view_mode">list,tree,form</field>
+      <field name = "help" type = "html">
+        <p class = "oe_view_nocontent_create"> Crear Cliente Nuevo</p>
+      </field>
+    </record>
+ 
+
+    <!--VISTA FORMULARIO-->
+    <record model="ir.actions.act_window" id="clientes_actionform">
+      <field name="name">Formulario de Clientes</field>
+      <field name="res_model">modelo.clientes</field>
+      <field name = "view_type">form</field>
+      <field name="view_mode">form,tree,list</field>
+      <field name = "help" type = "html">
+        <p class = "oe_view_nocontent_create"> Crear Cliente Nuevo</p>
+      </field>
+    </record>
+
+<!-- CATEGORIAS -->
+
+<!-- vista simple cuando le das click a mas detalles -->
+  <record model="ir.ui.view" id="view_categoria">
+      <field name="name">Categorias</field>
+      <field name="model">modelo.categorias</field>
+      <field name="arch" type="xml">
+         <tree>
+                <field name="categoria" required="1" placeholder="Categoria" />
+           </tree>
+      </field>
+  </record>
+
+        <!-- actions opening views on models Donde se insertan los datos-->
+    
+    <record model="ir.actions.act_window" id="action_categorias">
+      <field name="name">Categorias accion</field>
+      <field name="res_model">modelo.categorias</field>
+      <field name = "view_type">tree</field>
+      <field name="view_mode">list</field>
+      <field name = "help" type = "html">
+        <p class = "oe_view_nocontent_create"> Crear Categoria Nueva</p>
+      </field>      
+    </record>
+    
+<!-- CATEGORIAS -->   
+
+<!-- MENUS --> 
+    <!-- Top menu item -->
+    
+    <menuitem name="Clientes" id="clientesroot" parent="" sequence = "1"/>
+    <menuitem name="Categorias" id="maincat" parent="" sequence = "2"/>
+    <!-- menu categories -->
+    
+    <menuitem name="Control de Clientes" id="clientesrootdopdown" parent="clientesroot"/>
+    <menuitem name="Control de Categorias" id="categorias" parent="maincat"/>
+        
+    <!-- actions SOLO ir.actions.act_window Y ir.actions.server-->
+    <menuitem name="Categorias" id="catact" parent="maincat" action="action_categorias"/>
+
+    <menuitem name="Listado de usuarios" id="clientesact" parent="clientesrootdopdown" action="clientes_action"/>
+    <menuitem name="form de usuarios" id="clientesactfok" parent="clientesrootdopdown" action="clientes_actionform"/>
+  </data>
+</odoo>
